@@ -1,7 +1,7 @@
 ![](./.github/banner.png)
 
 <p align="center">
-    smbclient-ng, a fast and user friendly way to interact with SMB shares.
+    smbclient-ng, a fast, cross-platform, and user friendly way to interact with SMB shares.
     <br>
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/TheManticoreProject/smbclient-ng">
     <a href="https://twitter.com/intent/follow?screen_name=podalirius_" title="Follow"><img src="https://img.shields.io/twitter/follow/podalirius_?label=Podalirius&style=social"></a>
