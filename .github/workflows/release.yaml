@@ -1,0 +1,68 @@
+name: Build and Release
+
+on:
+  release:
+    types: [published]
+
+env:
+  GO_VERSION: '1.24'
+  BINARY_NAME: smbclient-ng
+
+jobs:
+  build:
+    name: Build and upload ${{ matrix.os }}/${{ matrix.arch }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [linux, windows, darwin]
+        arch: [amd64, arm64, 386]
+        # Exclude incompatible GOOS/GOARCH combinations.
+        exclude:
+          - os: darwin
+            arch: 386
+
+    env:
+      GO111MODULE: 'on'
+      CGO_ENABLED: '0'
+
+    steps:
+      - name: Checkout smbclient-ng
+        uses: actions/checkout@v4
+        with:
+          path: smbclient-ng
+
+      # The module pins Manticore via `replace => ../Manticore` because the SMB
+      # client features it depends on are only on Manticore's main branch, not a
+      # tagged release yet. Check it out as a sibling so the replace resolves.
+      - name: Checkout Manticore (satisfies the ../Manticore replace directive)
+        uses: actions/checkout@v4
+        with:
+          repository: TheManticoreProject/Manticore
+          ref: main
+          path: Manticore
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache-dependency-path: smbclient-ng/go.sum
+
+      - name: Build binary
+        working-directory: smbclient-ng
+        env:
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
+        run: |
+          mkdir -p release
+          OUTPUT_PATH="release/${BINARY_NAME}-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.os == 'windows' && '.exe' || '' }}"
+          go build -ldflags="-s -w" -o "$OUTPUT_PATH"
+
+      - name: Upload the release binaries
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          file: smbclient-ng/release/${{ env.BINARY_NAME }}-*
+          file_glob: true
