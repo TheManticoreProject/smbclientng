@@ -45,7 +45,7 @@ This is a Go re-implementation of [`p0dalirius/smbclient-ng`](https://github.com
 - [x] `mget`: Download every remote file matching a wildcard mask. Syntax: `mget <mask>`
 - [x] `mkdir`: Creates a new remote directory. Syntax: `mkdir <directory>`
 - [ ] `module`: Loads a specific module for additional functionalities. Syntax: `module <name>`
-- [ ] `mount`: Creates a mount point of the remote share on the local machine. Syntax: `mount <remote_path> <local_mountpoint>`
+- [x] `mount`: Creates a mount point of the remote share on the local machine. Syntax: `mount <remote_path> <local_mountpoint>`
 - [x] `mv` (alias `rename`, `move`): Move or rename a remote file or directory. Syntax: `mv <source> <destination>`
 - [x] `put`: Put a local file or directory in a remote directory. Syntax: `put <local_file> [remote_file]`
 - [x] `pwd`: Print the current remote working directory. Syntax: `pwd`
@@ -59,7 +59,7 @@ This is a Go re-implementation of [`p0dalirius/smbclient-ng`](https://github.com
 - [x] `sizeof`: Recursively compute the size of a folder. Syntax: `sizeof [directory|file]`
 - [x] `tail`: Get the last n lines of a remote file. Syntax: `tail [-n <lines>] <file>`
 - [x] `tree`: Displays a tree view of the remote directories. Syntax: `tree [directory]`
-- [ ] `umount`: Removes a mount point of the remote share on the local machine. Syntax: `umount <local_mount_point>`
+- [x] `umount`: Removes a mount point of the remote share on the local machine. Syntax: `umount <local_mount_point>`
 - [x] `use`: Use a SMB share. Syntax: `use <sharename>`
 
 
