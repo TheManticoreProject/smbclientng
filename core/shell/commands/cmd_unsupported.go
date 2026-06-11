@@ -17,10 +17,11 @@ type unsupportedCommand struct {
 }
 
 var unsupportedCommands = []unsupportedCommand{
-	{"sessions", "List the active sessions on the server.", "requires DCE/RPC srvsvc (NetrSessionEnum)"},
+	{"sessions", "Manage the SMB sessions.", "requires a multi-session architecture (the shell currently drives a single session)"},
+	{"module", "Loads a specific module for additional functionalities.", "requires the module subsystem, which is not ported yet"},
 	{"mount", "Creates a mount point of the remote share on the local machine.", "requires OS-level SMB mounting"},
 	{"umount", "Removes a mount point of the remote share on the local machine.", "requires OS-level SMB mounting"},
-	{"acls", "List ACLs of files and folders in the current directory.", "requires SMB security-descriptor queries"},
+	{"acls", "List ACLs of files and folders in the current directory.", "requires SMB security-descriptor queries not exposed by the Manticore stack"},
 }
 
 func init() {
