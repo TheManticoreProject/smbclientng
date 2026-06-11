@@ -20,14 +20,14 @@ This is a Go re-implementation of [`p0dalirius/smbclient-ng`](https://github.com
 - [x] `cat`: Get the contents of a remote file. Syntax: `cat <file>`
 - [x] `cd`: Change the current working directory. Syntax: `cd <directory>`
 - [x] `close`: Closes the SMB connection to the remote machine. Syntax: `close`
-- [ ] `connect`: Connect to the remote machine (useful if connection timed out). Syntax: `connect`
+- [x] `connect`: Connect to the remote machine (useful if connection timed out). Syntax: `connect`
 - [x] `dir`: List the contents of the current remote working directory (alias of `ls`). Syntax: `dir`
 - [x] `exit` (alias `quit`): Exits the smbclient-ng script. Syntax: `exit`
 - [x] `find`: Search for files in a directory hierarchy. Syntax: `find [-name PATTERN] [-iname PATTERN] [-type f|d] [-maxdepth N] [-mindepth N] [-ls] [PATH ...]`
 - [x] `get`: Get a remote file. Syntax: `get <file> [local_file]`
 - [x] `head`: Get the first n lines of a remote file. Syntax: `head [-n <lines>] <file>`
 - [x] `help`: Displays this help message. Syntax: `help [command]`
-- [ ] `history`: Displays the command history. Syntax: `history`
+- [x] `history`: Displays the command history. Syntax: `history [--contains <string>] [--clear]`
 - [x] `info`: Get information about the server and or the share. Syntax: `info <--server|--share>`
 - [x] `lbat`: Pretty prints the contents of a local file. Syntax: `lbat <file>`
 - [x] `lcat`: Print the contents of a local file. Syntax: `lcat <file>`
@@ -41,7 +41,7 @@ This is a Go re-implementation of [`p0dalirius/smbclient-ng`](https://github.com
 - [x] `lrmdir`: Removes a local directory. Syntax: `lrmdir <directory>`
 - [x] `ls`: List the contents of the current remote working directory. Syntax: `ls [directory]`
 - [x] `ltree`: Displays a tree view of the local directories. Syntax: `ltree [directory]`
-- [ ] `metadata`: Get metadata about a file or directory. Syntax: `metadata <file|directory>`
+- [x] `metadata`: Get metadata about a file or directory. Syntax: `metadata <file|directory>`
 - [x] `mget`: Download every remote file matching a wildcard mask. Syntax: `mget <mask>`
 - [x] `mkdir`: Creates a new remote directory. Syntax: `mkdir <directory>`
 - [ ] `module`: Loads a specific module for additional functionalities. Syntax: `module <name>`

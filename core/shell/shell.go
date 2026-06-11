@@ -23,6 +23,11 @@ type Shell struct {
 	localCwd string
 	running  bool
 
+	// history records the command lines entered this session, in order, for the
+	// `history` command. readline keeps its own persistent history for line
+	// editing; this in-memory copy is what `history` reads and can clear.
+	history []string
+
 	// commands maps a command name (and each of its aliases) to its definition.
 	commands map[string]*Command
 	// order preserves the canonical command list (sorted on registration) used
@@ -64,6 +69,12 @@ func (s *Shell) SetLocalCwd(dir string) { s.localCwd = dir }
 
 // Stop requests the read-eval-print loop to exit after the current command.
 func (s *Shell) Stop() { s.running = false }
+
+// History returns the command lines entered this session, in order.
+func (s *Shell) History() []string { return s.history }
+
+// ClearHistory empties the in-memory command history.
+func (s *Shell) ClearHistory() { s.history = nil }
 
 // NewShell builds a Shell bound to the given session manager and indexes all
 // registered commands.
@@ -131,6 +142,8 @@ func (s *Shell) Run() {
 		if len(tokens) == 0 {
 			continue
 		}
+
+		s.history = append(s.history, strings.TrimRight(line, "\r\n"))
 
 		name := strings.ToLower(tokens[0])
 		cmd, ok := s.commands[name]
