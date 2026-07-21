@@ -9,7 +9,8 @@
     <br>
 </p>
 
-This is a Go re-implementation of [`p0dalirius/smbclient-ng`](https://github.com/p0dalirius/smbclient-ng), built on top of the [Manticore](https://github.com/TheManticoreProject/Manticore) SMB stack.
+> [!NOTE]
+> This is a Go re-implementation of [`p0dalirius/smbclient-ng`](https://github.com/p0dalirius/smbclient-ng), built on top of the [Manticore](https://github.com/TheManticoreProject/Manticore) SMB stack.
 
 ## Features
 
