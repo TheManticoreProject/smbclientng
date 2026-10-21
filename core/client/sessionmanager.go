@@ -63,18 +63,16 @@ func (sm *SessionManager) Connect() error {
 	return nil
 }
 
-// Login authenticates the session. Kerberos and pass-the-hash are not yet wired
-// through the Manticore SMB stack, so we surface a clear error rather than
-// silently doing the wrong thing.
+// Login authenticates the session over NTLM, with either the password or the
+// NT hash (pass-the-hash) held by the credentials. Kerberos is not yet wired
+// through the Manticore generic SMB client, so we surface a clear error rather
+// than silently doing the wrong thing.
 func (sm *SessionManager) Login() error {
 	if sm.client == nil {
 		return fmt.Errorf("not connected")
 	}
 	if sm.UseKerberos {
 		return fmt.Errorf("Kerberos authentication is not yet supported by the Manticore SMB stack")
-	}
-	if sm.Creds != nil && sm.Creds.GetPassword() == "" && sm.Creds.CanPassTheHash() {
-		return fmt.Errorf("pass-the-hash is not yet supported by the Manticore SMB stack; provide a password instead")
 	}
 	return sm.client.Login(sm.Creds)
 }
