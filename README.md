@@ -95,7 +95,7 @@ $ ./smbclient-ng
 |___/_| |_| |_|_.__/ \___|_|_|\___|_| |_|\__|    |_| |_|\__, |
     by @podalirius_                             v1.0.0  |___/
 
-Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--password <string>] [--no-pass] [--hashes <string>] [--use-kerberos] [--timeout <string>] --host <string> [--port <tcp port>] [--nbt]
+Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--password <string>] [--no-pass] [--hashes <string>] [--use-kerberos] [--timeout <string>] [--advertised-name <string>] --host <string> [--port <tcp port>] [--nbt]
 
   --debug         Debug mode. (default: false)
 
@@ -107,8 +107,9 @@ Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--passw
     --hashes <string>       NT/LM hashes for pass-the-hash, format is [LMhash:]NThash. (default: "")
 
   Connection Settings:
-    -k, --use-kerberos     Use Kerberos instead of NTLM. (not yet supported by the Manticore SMB stack) (default: false)
-    -T, --timeout <string> Timeout in seconds of each connection attempt (TCP connect and dialect negotiation). (default: "3")
+    -k, --use-kerberos             Use Kerberos instead of NTLM. (not yet supported by the Manticore SMB stack) (default: false)
+    -T, --timeout <string>         Timeout in seconds of each connection attempt (TCP connect and dialect negotiation). (default: "3")
+    -a, --advertised-name <string> Machine name advertised to the server during authentication. (default: "")
 
   Target:
     -H, --host <string>   IP address or hostname of the SMB server to connect to.
