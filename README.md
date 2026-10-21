@@ -95,14 +95,15 @@ $ ./smbclient-ng
 |___/_| |_| |_|_.__/ \___|_|_|\___|_| |_|\__|    |_| |_|\__, |
     by @podalirius_                             v1.0.0  |___/
 
-Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--password <string>] [--hashes <string>] [--use-kerberos] --host <string> [--port <tcp port>] [--nbt]
+Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--password <string>] [--no-pass] [--hashes <string>] [--use-kerberos] --host <string> [--port <tcp port>] [--nbt]
 
   --debug         Debug mode. (default: false)
 
   Authentication:
     -d, --domain <string>   Windows domain to authenticate to. Use '.' for local accounts. (default: ".")
     -u, --username <string> User to authenticate as. Supports DOMAIN\user. (default: "")
-    -p, --password <string> Password to authenticate with. (default: "")
+    -p, --password <string> Password to authenticate with. Prompted for when no secret is given. (default: "")
+    --no-pass               Do not prompt for a password (authenticate with an empty one). (default: false)
     --hashes <string>       NT/LM hashes for pass-the-hash, format is [LMhash:]NThash. (default: "")
 
   Connection Settings:
