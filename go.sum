@@ -2,8 +2,8 @@ github.com/Azure/go-ntlmssp v0.0.0-20221128193559-754e69321358 h1:mFRzDkZVAjdal+
 github.com/Azure/go-ntlmssp v0.0.0-20221128193559-754e69321358/go.mod h1:chxPXzSsl7ZWRAuOIE23GDNzjWuZquvFlgA8xmpunjU=
 github.com/TheManticoreProject/Manticore v1.1.7-0.20261019123100-0fb661887e70 h1:ReInF2G7X9BsNBBZzUOANihArOW0WtjcHEmHtjQXQ+w=
 github.com/TheManticoreProject/Manticore v1.1.7-0.20261019123100-0fb661887e70/go.mod h1:dLFYJxYMy6F9t7Opm8Qw9P6gTbrGxzWw4+J2cMvxAQ8=
-github.com/TheManticoreProject/goopts v1.2.4 h1:HTR+i6ZfcwTPSDltENayQvTH2fZP6cDx0GTBUp/RuPM=
-github.com/TheManticoreProject/goopts v1.2.4/go.mod h1:NaM3hXXCeN+x9ZSlkS6Bm8i8Lfqe28/rveBsfrMUrAo=
+github.com/TheManticoreProject/goopts v1.2.7 h1:HtY7TYBGVLi2bYN+8gjxjGJxJ30qA26Xwrl0ekoWKIs=
+github.com/TheManticoreProject/goopts v1.2.7/go.mod h1:NaM3hXXCeN+x9ZSlkS6Bm8i8Lfqe28/rveBsfrMUrAo=
 github.com/TheManticoreProject/winacl v1.3.2 h1:MtvqBW8NVOklvy0bSjGcIXMd3BRw0miBWNAgtrKFqOc=
 github.com/TheManticoreProject/winacl v1.3.2/go.mod h1:Xji/qLzY8AkdBNXRgOS7g+UBEuqMQBBZllr+rl7Hzko=
 github.com/chzyer/logex v1.2.1 h1:XHDu3E6q+gdHgsdTPH6ImJMIp436vR6MPtH8gP05QzM=

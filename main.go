@@ -110,10 +110,9 @@ func main() {
 
 	// A username is required. Guard against an empty one up front: otherwise the SMB
 	// stack attempts a null/anonymous session and the server returns an opaque
-	// LOGON_FAILURE. The most common cause is using --user (which is not a flag) instead
-	// of -u/--username, which the parser silently ignores.
+	// LOGON_FAILURE.
 	if authUsername == "" {
-		logger.Error("A username is required: provide one with -u/--username (note: the flag is --username, not --user).")
+		logger.Error("A username is required: provide one with -u/--username.")
 		return
 	}
 
