@@ -33,16 +33,6 @@ jobs:
         with:
           path: smbclient-ng
 
-      # The module pins Manticore via `replace => ../Manticore` because the SMB
-      # client features it depends on are only on Manticore's main branch, not a
-      # tagged release yet. Check it out as a sibling so the replace resolves.
-      - name: Checkout Manticore (satisfies the ../Manticore replace directive)
-        uses: actions/checkout@v4
-        with:
-          repository: TheManticoreProject/Manticore
-          ref: main
-          path: Manticore
-
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
