@@ -7,9 +7,7 @@ require (
 	github.com/TheManticoreProject/goopts v1.2.4
 	github.com/TheManticoreProject/winacl v1.3.2
 	github.com/chzyer/readline v1.5.1
+	golang.org/x/term v0.36.0
 )
 
-require (
-	golang.org/x/sys v0.37.0 // indirect
-	golang.org/x/term v0.36.0 // indirect
-)
+require golang.org/x/sys v0.37.0 // indirect

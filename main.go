@@ -46,6 +46,7 @@ var (
 	authUsername string
 	authPassword string
 	authHashes   string
+	authNoPass   bool
 
 	// Connection Settings
 	useKerberos bool
@@ -78,7 +79,8 @@ func parseArgs() {
 	} else {
 		group_auth.NewStringArgument(&authDomain, "-d", "--domain", ".", false, "Windows domain to authenticate to. Use '.' for local accounts.")
 		group_auth.NewStringArgument(&authUsername, "-u", "--username", "", false, "User to authenticate as. Supports DOMAIN\\user.")
-		group_auth.NewStringArgument(&authPassword, "-p", "--password", "", false, "Password to authenticate with.")
+		group_auth.NewStringArgument(&authPassword, "-p", "--password", "", false, "Password to authenticate with. Prompted for when no secret is given.")
+		group_auth.NewBoolArgument(&authNoPass, "", "--no-pass", false, "Do not prompt for a password (authenticate with an empty one).")
 		group_auth.NewStringArgument(&authHashes, "", "--hashes", "", false, "NT/LM hashes for pass-the-hash, format is [LMhash:]NThash.")
 	}
 
@@ -107,6 +109,19 @@ func main() {
 
 	// Accept DOMAIN\user and DOMAIN/user; the embedded domain overrides -d.
 	authDomain, authUsername = utils.SplitDomainUsername(authDomain, authUsername)
+
+	if authNoPass && (authPassword != "" || authHashes != "") {
+		logger.Error("--no-pass cannot be combined with -p/--password or --hashes.")
+		return
+	}
+	if utils.NeedsPasswordPrompt(authUsername, authPassword, authHashes, authNoPass, useKerberos) {
+		password, err := utils.ReadPassword(fmt.Sprintf("  | Provide a password for '%s\\%s': ", authDomain, authUsername))
+		if err != nil {
+			logger.Error(fmt.Sprintf("Could not read the password: %s (use -p, --hashes or --no-pass)", err))
+			return
+		}
+		authPassword = password
+	}
 
 	creds, err := credentials.NewCredentials(authDomain, authUsername, authPassword, authHashes)
 	if err != nil {
