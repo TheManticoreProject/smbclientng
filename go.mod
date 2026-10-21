@@ -3,9 +3,9 @@ module github.com/TheManticoreProject/smbclient-ng
 go 1.24.0
 
 require (
-	github.com/TheManticoreProject/Manticore v1.0.8
+	github.com/TheManticoreProject/Manticore v1.1.7-0.20261019123100-0fb661887e70
 	github.com/TheManticoreProject/goopts v1.2.4
-	github.com/TheManticoreProject/winacl v1.3.1
+	github.com/TheManticoreProject/winacl v1.3.2
 	github.com/chzyer/readline v1.5.1
 )
 
@@ -13,9 +13,3 @@ require (
 	golang.org/x/sys v0.37.0 // indirect
 	golang.org/x/term v0.36.0 // indirect
 )
-
-// The SMB v1.0 client file/directory operations used by this tool
-// (ListDirectory, ReadFile, WriteFile, DeleteFile, ...) are only available in
-// the in-development Manticore checkout, not in any published release yet.
-// Point at the local working copy until a release ships them.
-replace github.com/TheManticoreProject/Manticore => ../Manticore

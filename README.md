@@ -66,10 +66,15 @@
 
 ## Install
 
-Build from source with Go (≥ 1.24). The tool builds against the in-development Manticore SMB stack, which `go.mod` references through a local `replace` directive, so check out both repositories side by side:
+Install with Go (≥ 1.24):
 
 ```
-git clone https://github.com/TheManticoreProject/Manticore
+go install github.com/TheManticoreProject/smbclient-ng@latest
+```
+
+Or build from source:
+
+```
 git clone https://github.com/TheManticoreProject/smbclient-ng
 cd smbclient-ng
 go build -o smbclient-ng .

@@ -5,10 +5,10 @@ import (
 
 	srvsvc "github.com/TheManticoreProject/Manticore/network/dcerpc/interfaces/4b324fc8-1670-01d3-1278-5a47bf6ee188/3.0"
 	"github.com/TheManticoreProject/Manticore/network/dcerpc/interfaces/4b324fc8-1670-01d3-1278-5a47bf6ee188/3.0/functions"
-	"github.com/TheManticoreProject/Manticore/network/dcerpc/interfaces/4b324fc8-1670-01d3-1278-5a47bf6ee188/3.0/structures"
 	mssrvs "github.com/TheManticoreProject/Manticore/network/dcerpc/ms-protocols/ms-srvs"
 	"github.com/TheManticoreProject/Manticore/network/dcerpc/ndr"
 	dcerpcclient "github.com/TheManticoreProject/Manticore/network/dcerpc/v5/client"
+	srvstypes "github.com/TheManticoreProject/Manticore/windows/protocols/ms-srvs"
 
 	"github.com/TheManticoreProject/winacl/ace/acetype"
 	"github.com/TheManticoreProject/winacl/securitydescriptor"
@@ -116,11 +116,11 @@ func (sm *SessionManager) ListSharesWithRights() ([]Share, error) {
 	defer rpc.Close()
 
 	resume := ndr.DWORD(0)
-	info := structures.SHARE_ENUM_STRUCT{
+	info := srvstypes.SHARE_ENUM_STRUCT{
 		Level: 502,
-		ShareInfo: structures.SHARE_ENUM_UNION{
+		ShareInfo: srvstypes.SHARE_ENUM_UNION{
 			Tag:      502,
-			Level502: &structures.SHARE_INFO_502_CONTAINER{},
+			Level502: &srvstypes.SHARE_INFO_502_CONTAINER{},
 		},
 	}
 
