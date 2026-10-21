@@ -3,7 +3,7 @@ module github.com/TheManticoreProject/smbclient-ng
 go 1.24.0
 
 require (
-	github.com/TheManticoreProject/Manticore v1.1.6
+	github.com/TheManticoreProject/Manticore v1.1.7-0.20261019123100-0fb661887e70
 	github.com/TheManticoreProject/goopts v1.2.4
 	github.com/TheManticoreProject/winacl v1.3.2
 	github.com/chzyer/readline v1.5.1
