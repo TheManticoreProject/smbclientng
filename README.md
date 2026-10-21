@@ -101,7 +101,7 @@ Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--passw
 
   Authentication:
     -d, --domain <string>   Windows domain to authenticate to. Use '.' for local accounts. (default: ".")
-    -u, --username <string> User to authenticate as. (default: "")
+    -u, --username <string> User to authenticate as. Supports DOMAIN\user. (default: "")
     -p, --password <string> Password to authenticate with. (default: "")
     --hashes <string>       NT/LM hashes for pass-the-hash, format is [LMhash:]NThash. (default: "")
 
