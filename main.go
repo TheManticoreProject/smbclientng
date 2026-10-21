@@ -80,7 +80,7 @@ func parseArgs() {
 		logger.Warn(fmt.Sprintf("Error creating ArgumentGroup: %s", err))
 	} else {
 		group_auth.NewStringArgument(&authDomain, "-d", "--domain", ".", false, "Windows domain to authenticate to. Use '.' for local accounts.")
-		group_auth.NewStringArgument(&authUsername, "-u", "--username", "", false, "User to authenticate as. Supports DOMAIN\\user.")
+		group_auth.NewStringArgument(&authUsername, "-u", "--user", "", false, "User to authenticate as. Supports DOMAIN\\user.")
 		group_auth.NewStringArgument(&authPassword, "-p", "--password", "", false, "Password to authenticate with. Prompted for when no secret is given.")
 		group_auth.NewBoolArgument(&authNoPass, "", "--no-pass", false, "Do not prompt for a password (authenticate with an empty one).")
 		group_auth.NewStringArgument(&authHashes, "", "--hashes", "", false, "NT/LM hashes for pass-the-hash, format is [LMhash:]NThash.")
@@ -112,7 +112,7 @@ func main() {
 	// stack attempts a null/anonymous session and the server returns an opaque
 	// LOGON_FAILURE.
 	if authUsername == "" {
-		logger.Error("A username is required: provide one with -u/--username.")
+		logger.Error("A username is required: provide one with -u/--user.")
 		return
 	}
 
