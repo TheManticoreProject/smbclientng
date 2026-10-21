@@ -29,6 +29,11 @@ type SessionManager struct {
 	// attempt. Zero applies the Manticore default (smbclient.DefaultDialTimeout).
 	Timeout time.Duration
 
+	// AdvertisedName is the client machine name sent to the server during
+	// authentication (the NTLM workstation name). Empty applies the Manticore
+	// default.
+	AdvertisedName string
+
 	client *smbclient.Client
 
 	// share is the name of the currently selected share ("" when none is
@@ -60,7 +65,7 @@ func (sm *SessionManager) Connect() error {
 
 	// No preferred dialects: offer all supported dialects, best first (SMB2/SMB3
 	// before SMB1), and let the server pick the highest it supports.
-	c, err := smbclient.Dial(sm.Host, sm.Port, smbclient.Options{DialTimeout: sm.Timeout})
+	c, err := smbclient.Dial(sm.Host, sm.Port, smbclient.Options{DialTimeout: sm.Timeout, Workstation: sm.AdvertisedName})
 	if err != nil {
 		return err
 	}

@@ -49,8 +49,9 @@ var (
 	authNoPass   bool
 
 	// Connection Settings
-	useKerberos bool
-	timeout     string
+	useKerberos    bool
+	timeout        string
+	advertisedName string
 )
 
 func parseArgs() {
@@ -92,6 +93,7 @@ func parseArgs() {
 	} else {
 		group_conn.NewBoolArgument(&useKerberos, "-k", "--use-kerberos", false, "Use Kerberos instead of NTLM. (not yet supported by the Manticore SMB stack)")
 		group_conn.NewStringArgument(&timeout, "-T", "--timeout", "3", false, "Timeout in seconds of each connection attempt (TCP connect and dialect negotiation).")
+		group_conn.NewStringArgument(&advertisedName, "-a", "--advertised-name", "", false, "Machine name advertised to the server during authentication.")
 	}
 
 	ap.Parse()
@@ -140,6 +142,7 @@ func main() {
 	// Build the session manager wrapping the Manticore SMB v1.0 client.
 	sm := client.NewSessionManager(host, port, useNBT, creds, useKerberos, debug)
 	sm.Timeout = connectTimeout
+	sm.AdvertisedName = advertisedName
 
 	// Establish the transport connection and authenticate before dropping into
 	// the interactive shell.
