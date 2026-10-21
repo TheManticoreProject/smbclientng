@@ -103,7 +103,7 @@ Usage: smbclient-ng [--debug] [--domain <string>] [--username <string>] [--passw
     -d, --domain <string>   Windows domain to authenticate to. Use '.' for local accounts. (default: ".")
     -u, --username <string> User to authenticate as. (default: "")
     -p, --password <string> Password to authenticate with. (default: "")
-    --hashes <string>       NT/LM hashes, format is LMhash:NThash. (default: "")
+    --hashes <string>       NT/LM hashes for pass-the-hash, format is [LMhash:]NThash. (default: "")
 
   Connection Settings:
     -k, --use-kerberos Use Kerberos instead of NTLM. (not yet supported by the Manticore SMB stack) (default: false)

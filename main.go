@@ -78,7 +78,7 @@ func parseArgs() {
 		group_auth.NewStringArgument(&authDomain, "-d", "--domain", ".", false, "Windows domain to authenticate to. Use '.' for local accounts.")
 		group_auth.NewStringArgument(&authUsername, "-u", "--username", "", false, "User to authenticate as.")
 		group_auth.NewStringArgument(&authPassword, "-p", "--password", "", false, "Password to authenticate with.")
-		group_auth.NewStringArgument(&authHashes, "", "--hashes", "", false, "NT/LM hashes, format is LMhash:NThash.")
+		group_auth.NewStringArgument(&authHashes, "", "--hashes", "", false, "NT/LM hashes for pass-the-hash, format is [LMhash:]NThash.")
 	}
 
 	// Connection Settings flags
