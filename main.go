@@ -5,6 +5,7 @@ import (
 
 	"github.com/TheManticoreProject/smbclient-ng/core/client"
 	"github.com/TheManticoreProject/smbclient-ng/core/shell"
+	"github.com/TheManticoreProject/smbclient-ng/core/utils"
 	// Blank import registers every interactive command via the commands
 	// package's init() functions.
 	_ "github.com/TheManticoreProject/smbclient-ng/core/shell/commands"
@@ -76,7 +77,7 @@ func parseArgs() {
 		logger.Warn(fmt.Sprintf("Error creating ArgumentGroup: %s", err))
 	} else {
 		group_auth.NewStringArgument(&authDomain, "-d", "--domain", ".", false, "Windows domain to authenticate to. Use '.' for local accounts.")
-		group_auth.NewStringArgument(&authUsername, "-u", "--username", "", false, "User to authenticate as.")
+		group_auth.NewStringArgument(&authUsername, "-u", "--username", "", false, "User to authenticate as. Supports DOMAIN\\user.")
 		group_auth.NewStringArgument(&authPassword, "-p", "--password", "", false, "Password to authenticate with.")
 		group_auth.NewStringArgument(&authHashes, "", "--hashes", "", false, "NT/LM hashes for pass-the-hash, format is [LMhash:]NThash.")
 	}
@@ -103,6 +104,9 @@ func main() {
 		logger.Error("A username is required: provide one with -u/--username (note: the flag is --username, not --user).")
 		return
 	}
+
+	// Accept DOMAIN\user and DOMAIN/user; the embedded domain overrides -d.
+	authDomain, authUsername = utils.SplitDomainUsername(authDomain, authUsername)
 
 	creds, err := credentials.NewCredentials(authDomain, authUsername, authPassword, authHashes)
 	if err != nil {
