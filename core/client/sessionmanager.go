@@ -2,6 +2,7 @@ package client
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/TheManticoreProject/smbclient-ng/core/utils"
 
@@ -23,6 +24,10 @@ type SessionManager struct {
 	Creds       *credentials.Credentials
 	UseKerberos bool
 	Debug       bool
+
+	// Timeout bounds the TCP connect and dialect negotiation of each connection
+	// attempt. Zero applies the Manticore default (smbclient.DefaultDialTimeout).
+	Timeout time.Duration
 
 	client *smbclient.Client
 
@@ -53,9 +58,9 @@ func (sm *SessionManager) Connect() error {
 		return fmt.Errorf("NBT transport is not supported by the generic SMB client; use direct TCP (the default)")
 	}
 
-	// Empty Options: offer all supported dialects, best first (SMB2/SMB3 before
-	// SMB1), and let the server pick the highest it supports.
-	c, err := smbclient.Dial(sm.Host, sm.Port, smbclient.Options{})
+	// No preferred dialects: offer all supported dialects, best first (SMB2/SMB3
+	// before SMB1), and let the server pick the highest it supports.
+	c, err := smbclient.Dial(sm.Host, sm.Port, smbclient.Options{DialTimeout: sm.Timeout})
 	if err != nil {
 		return err
 	}
